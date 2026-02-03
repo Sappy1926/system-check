@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>System Check</title>
+<style>
+body{
+  background:black;
+  color:#00ff88;
+  font-family:monospace;
+  text-align:center;
+  overflow:hidden;
+}
+#text{margin-top:15%; font-size:22px;}
+#final{display:none; color:#ff4d6d; font-size:28px; margin-top:40px;}
+button{
+  padding:12px 25px;
+  font-size:20px;
+  margin:15px;
+  cursor:pointer;
+  position:relative;
+}
+.float{
+  position:fixed;
+  font-size:30px;
+  animation: floatUp 5s linear infinite;
+}
+@keyframes floatUp{
+  from{transform:translateY(100vh);}
+  to{transform:translateY(-10vh);}
+}
+#error{
+  color:#ff4444;
+  margin-top:15px;
+  font-size:20px;
+}
+</style>
+</head>
+<body>
+
+<div id="text"></div>
+
+<div id="final">
+  <p>System Scan Complete ❤️</p>
+  <p>Critical File Missing:</p>
+  <p><b>Apurwa Mandlik, will you be my Valentine?</b></p>
+  <button onclick="yesClicked()">YES 💖</button>
+  <button id="noBtn" onmouseover="moveNo()">NO 🙈</button>
+  <div id="error"></div>
+</div>
+
+<script>
+let lines = [
+"Initializing secure connection...",
+"Accessing heart database...",
+"Scanning emotions...",
+"Analyzing memories with Apurwa...",
+"Checking compatibility...",
+"Error found...",
+"Missing critical file..."
+];
+
+let i=0;
+let text=document.getElementById("text");
+
+function typeLine(){
+  if(i<lines.length){
+    text.innerHTML += lines[i] + "<br>";
+    i++;
+    setTimeout(typeLine,1200);
+  } else {
+    setTimeout(()=>{
+      text.style.display="none";
+      document.getElementById("final").style.display="block";
+    },1000);
+  }
+}
+typeLine();
+
+function moveNo(){
+  let btn=document.getElementById("noBtn");
+  btn.style.position="absolute";
+  btn.style.top=Math.random()*80+"vh";
+  btn.style.left=Math.random()*80+"vw";
+  document.getElementById("error").innerHTML="❌ Error: 'No' is not a valid option 😼";
+}
+
+function yesClicked(){
+  for(let i=0;i<60;i++){
+    let el=document.createElement("div");
+    el.className="float";
+    let emojis=["❤️","💖","💕","🐶","🐱","💘","💝","🥰"];
+    el.innerHTML=emojis[Math.floor(Math.random()*emojis.length)];
+    el.style.left=Math.random()*100+"vw";
+    document.body.appendChild(el);
+  }
+}
+</script>
+
+</body>
+</html>
